@@ -6,9 +6,10 @@
 int main ()
 {
     Hero MainHero ( "Punisher228", true );
-    MainHero.PrintStat ();
-    Character Enemy ( false, 1);
-    Enemy.PrintStat ();
+    //MainHero.PrintStat ();
+    NPC Enemy ( false );
+    Enemy.ChangeEnemyDefaultStats ();
+    //Enemy.PrintStat ();
 
     std::cout << "================================" << std::endl;
     //while ( !MainHero.GetIs_Dead () || !Enemy.GetIs_Dead () )
@@ -17,22 +18,39 @@ int main ()
     //    MainHero.Attack ( Enemy );
     //    Enemy.Attack ( MainHero );
     //}
-    std::thread ThreadHero ( &Hero::Attack, MainHero, std::ref ( Enemy ) );
-    std::thread ThreadNPC ( &Character::Attack, Enemy, std::ref ( MainHero ) );
-    ThreadHero.join ();
-    ThreadNPC.join ();
-
-    if ( Enemy.GetHp () == 0.0f )
+    int qq = 0;
+    while ( qq < 3 )
     {
-        MainHero.Kill ( Enemy );
-    }
-    else if ( MainHero.GetHp () == 0.0f )
-    {
-        Enemy.Kill ( MainHero );
-    }
+        MainHero.PrintStat ();
+        Enemy.PrintStat ();
+        std::thread ThreadHero ( &Hero::Attack, MainHero, std::ref ( Enemy ) );
+        std::thread ThreadNPC ( &NPC::Attack, Enemy, std::ref ( MainHero ) );
+        ThreadHero.join ();
+        ThreadNPC.join ();
 
-    MainHero.CheckDeath () ? MainHero.EndGame () : MainHero.LevelUp ();
+        if ( Enemy.CheckDeath () )
+        {
+            MainHero.HeroKillEnemy ( Enemy );
+            //MainHero.GainEx ();
+        }
+        else if ( MainHero.CheckDeath ())
+        {
+            Enemy.Kill ( MainHero );
+            MainHero.EndGame ();
+            break;
+        }
 
+        //MainHero.CheckDeath () ? MainHero.EndGame () : MainHero.GainEx ();
+
+        if ( MainHero.GetLevel () > Enemy.GetLevel () )
+        {
+            Enemy.LevelUp ();
+        }
+        MainHero.RefreshHp ();
+        Enemy.RefreshHp ();
+
+        qq++;
+    }
     std::cout << "================================" << std::endl;
 
     MainHero.PrintStat ();

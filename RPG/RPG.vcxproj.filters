@@ -24,12 +24,18 @@
     <ClCompile Include="Hero.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Hero.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
