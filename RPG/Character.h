@@ -33,7 +33,6 @@ public:
 
     std::string GetName () { return this->Name; }
     float GetHp () { return this->Hp; }
-    float GetMaxHp () { return this->MaxHp; }
     float GetDamage () { return this->Damage; }
     float GetDamageModify () { return this->DamageModify; }
     int32_t GetDelayAttacks () { return this->DelayAttacks; }
@@ -62,6 +61,8 @@ public:
 
 protected:
 
+    float GetMaxHp () { return this->MaxHp; }
+
     ////////    Setters for all variables   ////////
 
     void SetName ( std::string Name ) { this->Name = Name; }
@@ -84,9 +85,11 @@ protected:
     float MaxHp = 100.0f;
     float Damage = 1.0f;
     float DamageModify = 5.0f;
-    int32_t DelayAttacks = 20;
+    int32_t DelayAttacks = 50;
     float LevelModify = 1.04f;//    ????
     int32_t Level = 1;
+
+    float Ex = 0.0f;
 
     bool Is_Good = false;
     bool Is_Dead = false;

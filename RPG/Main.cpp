@@ -8,7 +8,10 @@ int main ()
     Hero MainHero ( "Punisher228", true );
     //MainHero.PrintStat ();
     NPC Enemy ( false );
-    Enemy.ChangeEnemyDefaultStats ();
+    int32_t NewEnemyDifficulty;
+    std::cout << "Choose enemy difficulty: ";
+    std::cin >> NewEnemyDifficulty;
+    Enemy.ChangeEnemyDefaultStats ( NewEnemyDifficulty );
     //Enemy.PrintStat ();
 
     std::cout << "================================" << std::endl;
@@ -31,7 +34,6 @@ int main ()
         if ( Enemy.CheckDeath () )
         {
             MainHero.HeroKillEnemy ( Enemy );
-            //MainHero.GainEx ();
         }
         else if ( MainHero.CheckDeath ())
         {
@@ -40,12 +42,15 @@ int main ()
             break;
         }
 
-        //MainHero.CheckDeath () ? MainHero.EndGame () : MainHero.GainEx ();
-
         if ( MainHero.GetLevel () > Enemy.GetLevel () )
         {
             Enemy.LevelUp ();
         }
+
+        std::cout << "Choose enemy difficulty: ";
+        std::cin >> NewEnemyDifficulty;
+        Enemy.ChangeEnemyDefaultStats ( NewEnemyDifficulty );
+
         MainHero.RefreshHp ();
         Enemy.RefreshHp ();
 

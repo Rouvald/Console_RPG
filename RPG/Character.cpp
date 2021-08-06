@@ -2,7 +2,7 @@
 
 void Character::PrintStat ()
 {
-    std::cout << this->GetName () << " stat:    Hp: " << GetHp () << "\tDamage: " << GetDamage () << "\tDelay Attacks: " << this->GetDelayAttacks () << std::endl;
+    std::cout << this->GetName () << " stat:    Hp: " << GetHp () << "\tDamage: " << GetDamage () << "\tDelay Attacks: " << this->GetDelayAttacks () << "\tLevel: " << this->GetLevel () << std::endl;
 }
 
 static bool Is_Character_Dead = false; // crunch for end second thread
